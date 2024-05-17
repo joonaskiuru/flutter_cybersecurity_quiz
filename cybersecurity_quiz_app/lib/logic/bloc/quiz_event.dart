@@ -1,4 +1,10 @@
-part of 'quiz_bloc.dart';
+import 'package:equatable/equatable.dart';
+import 'package:meta/meta.dart';
 
 @immutable
-sealed class QuizEvent {}
+sealed class QuizEvent extends Equatable {
+  const QuizEvent();
+
+  @override
+  List<Object> get props => [];
+}
