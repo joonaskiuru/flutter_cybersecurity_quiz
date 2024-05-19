@@ -8,3 +8,5 @@ sealed class QuizEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class LoadQuizzes extends QuizEvent {}
