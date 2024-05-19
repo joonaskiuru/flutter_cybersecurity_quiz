@@ -4,10 +4,12 @@ import 'package:equatable/equatable.dart';
 
 @immutable
 sealed class QuizState extends Equatable {
-  const QuizState();
+  final List<Quiz> quizzes;
+  final bool hasReachedMax;
+  const QuizState({this.quizzes = const <Quiz>[], this.hasReachedMax = true});
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [quizzes, hasReachedMax];
 }
 
 final class QuizInitial extends QuizState {}
@@ -20,10 +22,8 @@ final class QuizError extends QuizState {
 }
 
 final class QuizLoaded extends QuizState {
-  const QuizLoaded({this.quizzes = const <Quiz>[], this.hasReachedMax = true});
-
-  final List<Quiz> quizzes;
-  final bool hasReachedMax;
+  const QuizLoaded(
+      {super.quizzes = const <Quiz>[], super.hasReachedMax = true});
 
   QuizLoaded copyWith({List<Quiz>? quizzes, bool? hasReachedMax}) {
     return QuizLoaded(

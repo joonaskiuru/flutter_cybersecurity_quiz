@@ -28,10 +28,12 @@ class _QuizList extends State<QuizList> {
     super.dispose();
   }
 
+  // This method reacts to scrolling.
   void _onScroll() {
     if (_isBottom) context.read<QuizBloc>().add(LoadQuizzes());
   }
 
+  // Check if user has scrolled all the way to the bottom.
   bool get _isBottom {
     if (!_scrollController.hasClients) return false;
     final maxScroll = _scrollController.position.maxScrollExtent;
@@ -45,6 +47,7 @@ class _QuizList extends State<QuizList> {
       builder: (context, state) {
         return ListView.builder(
             controller: _scrollController,
+            // itemCount:
             itemBuilder: (context, index) {
               return const Text("Hello");
             });
