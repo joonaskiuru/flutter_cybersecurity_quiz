@@ -1,5 +1,3 @@
-import 'dart:js_interop';
-
 import 'package:cybersecurity_quiz_app/logic/bloc/quiz_bloc.dart';
 import 'package:cybersecurity_quiz_app/logic/bloc/quiz_event.dart';
 import 'package:cybersecurity_quiz_app/logic/bloc/quiz_state.dart';
@@ -45,12 +43,25 @@ class _QuizList extends State<QuizList> {
   Widget build(BuildContext context) {
     return BlocBuilder<QuizBloc, QuizState>(
       builder: (context, state) {
+        if (state is QuizLoading) {
+          return const Center(
+            child: Text("Is Loading..."),
+          );
+        }
         return ListView.builder(
-            controller: _scrollController,
-            // itemCount:
-            itemBuilder: (context, index) {
-              return const Text("Hello");
-            });
+          // itemCount:
+          itemBuilder: (context, index) {
+            return index >= state.quizzes.length
+                ? const Center(child: CircularProgressIndicator())
+                : ListTile(
+                    title: Text(state.quizzes[index].category),
+                  );
+          },
+          itemCount: state.hasReachedMax
+              ? state.quizzes.length
+              : state.quizzes.length + 1,
+          controller: _scrollController,
+        );
       },
     );
   }

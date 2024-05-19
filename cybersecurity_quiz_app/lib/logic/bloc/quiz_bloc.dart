@@ -13,10 +13,10 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
 Future<void> _onLoadQuizzes(LoadQuizzes event, Emitter<QuizState> emit) async {
   emit(QuizLoading());
   try {
-    var quiz_json =
+    var quizJson =
         await rootBundle.loadString("../assets/database/quiz_data.json");
-    List<Quiz> quizzes = Quiz.fromJsonToList(quiz_json);
-    emit(QuizLoaded(quizzes: quizzes, hasReachedMax: true));
+    List<Quiz> quizzes = Quiz.fromJsonToList(quizJson);
+    emit(QuizLoaded(quizzes: quizzes, hasReachedMax: false));
   } catch (e) {
     emit(const QuizError("Error loading quiz data."));
   }
