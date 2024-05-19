@@ -1,7 +1,10 @@
+import 'dart:js_interop';
+
 import 'package:cybersecurity_quiz_app/logic/bloc/quiz_bloc.dart';
 import 'package:cybersecurity_quiz_app/logic/bloc/quiz_event.dart';
 import 'package:cybersecurity_quiz_app/logic/bloc/quiz_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class QuizList extends StatefulWidget {
   @override
@@ -38,7 +41,14 @@ class _QuizList extends State<QuizList> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    return BlocBuilder<QuizBloc, QuizState>(
+      builder: (context, state) {
+        return ListView.builder(
+            controller: _scrollController,
+            itemBuilder: (context, index) {
+              return const Text("Hello");
+            });
+      },
+    );
   }
 }
