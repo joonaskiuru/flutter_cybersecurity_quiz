@@ -20,6 +20,13 @@ final class QuizError extends QuizState {
 }
 
 final class QuizLoaded extends QuizState {
-  final List<Quiz> quizzes;
-  const QuizLoaded(this.quizzes);
+  final List<Quiz>? quizzes;
+  final bool hasReachedMax;
+  const QuizLoaded({this.quizzes, this.hasReachedMax = true});
+
+  QuizLoaded copyWith({List<Quiz>? quizzes, bool? hasReachedMax}) {
+    return QuizLoaded(
+        quizzes: quizzes ?? this.quizzes,
+        hasReachedMax: hasReachedMax ?? this.hasReachedMax);
+  }
 }
