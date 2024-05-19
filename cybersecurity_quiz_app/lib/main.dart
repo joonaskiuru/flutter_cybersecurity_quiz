@@ -1,20 +1,12 @@
+import 'package:cybersecurity_quiz_app/presentation/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MainApp());
-}
-
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
+  runApp(
+    const MaterialApp(
       home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
+        body: HomeScreen(title: "Cyber Security Quiz App"),
       ),
-    );
-  }
+    ),
+  );
 }
