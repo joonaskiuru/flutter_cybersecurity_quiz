@@ -1,6 +1,5 @@
-import 'dart:convert';
-
 import 'package:bloc/bloc.dart';
+import 'package:cybersecurity_quiz_app/logic/models/quiz_model.dart';
 import 'package:flutter/services.dart';
 import 'quiz_event.dart';
 import 'quiz_state.dart';
@@ -15,9 +14,8 @@ Future<void> _onLoadQuizzes(LoadQuizzes event, Emitter<QuizState> emit) async {
   emit(QuizLoading());
   try {
     var quiz_json = await rootBundle.loadString("../database/quiz_data.json");
-    var quizList = jsonDecode(quiz_json);
-
-    
+    List<Quiz> quizzes = Quiz.fromJsonToList(quiz_json);
+    emit(QuizLoaded(quizzes));
   } catch (e) {
     emit(const QuizError("Error loading quiz data."));
   }

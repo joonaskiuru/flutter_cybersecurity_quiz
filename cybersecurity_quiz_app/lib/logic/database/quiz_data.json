@@ -13,7 +13,7 @@
                             "C. Encrypts data",
                             "D. Provides antivirus protection"
                         ],
-                        "answer": "A"
+                        "answerIndex": 0
                     },
                     {
                         "id": 2,
@@ -24,7 +24,7 @@
                             "C. HTTPS",
                             "D. SMTP"
                         ],
-                        "answer": "C"
+                        "answerIndex": 2
                     },
                     {
                         "id": 3,
@@ -35,7 +35,7 @@
                             "C. Hub",
                             "D. Repeater"
                         ],
-                        "answer": "D"
+                        "answerIndex": 3
                     }
                 ]
             },
@@ -51,7 +51,7 @@
                             "C. General Data Privacy Regulation",
                             "D. Global Data Protection Regulation"
                         ],
-                        "answer": "A"
+                        "answerIndex": 0
                     },
                     {
                         "id": 2,
@@ -62,7 +62,7 @@
                             "C. To protect data",
                             "D. To speed up data transfer"
                         ],
-                        "answer": "C"
+                        "answerIndex": 2
                     },
                     {
                         "id": 3,
@@ -73,7 +73,7 @@
                             "C. Hashing",
                             "D. Salting"
                         ],
-                        "answer": "B"
+                        "answerIndex": 1
                     }
                 ]
             },
@@ -89,7 +89,7 @@
                             "C. SQL injection",
                             "D. Man-in-the-middle attack"
                         ],
-                        "answer": "A"
+                        "answerIndex": 0
                     },
                     {
                         "id": 2,
@@ -100,7 +100,7 @@
                             "C. Spyware",
                             "D. Ransomware"
                         ],
-                        "answer": "A"
+                        "answerIndex": 0
                     },
                     {
                         "id": 3,
@@ -111,7 +111,7 @@
                             "C. Poor network configuration",
                             "D. Outdated software"
                         ],
-                        "answer": "B"
+                        "answerIndex": 1
                     }
                 ]
             }
