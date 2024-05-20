@@ -16,6 +16,7 @@ class _QuizList extends State<QuizList> {
   void initState() {
     super.initState();
     _scrollController.addListener(_onScroll);
+    context.read<QuizBloc>().add(LoadQuizzes());
   }
 
   @override

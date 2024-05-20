@@ -14,8 +14,9 @@ Future<void> _onLoadQuizzes(LoadQuizzes event, Emitter<QuizState> emit) async {
   emit(QuizLoading());
   try {
     var quizJson =
-        await rootBundle.loadString("../assets/database/quiz_data.json");
+        await rootBundle.loadString("assets/database/quiz_data.json");
     List<Quiz> quizzes = Quiz.fromJsonToList(quizJson);
+    print("quizzes: ${quizzes}");
     emit(QuizLoaded(quizzes: quizzes, hasReachedMax: false));
   } catch (e) {
     emit(const QuizError("Error loading quiz data."));

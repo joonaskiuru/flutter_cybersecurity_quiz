@@ -114,44 +114,6 @@
                         "answerIndex": 1
                     }
                 ]
-            },
-            {
-                "category": "Threats and Vulnerabilities",
-                "questions": [
-                    {
-                        "id": 1,
-                        "question": "What is a common method used by attackers to gain access to a system by tricking individuals?",
-                        "options": [
-                            "A. Phishing",
-                            "B. DDoS attack",
-                            "C. SQL injection",
-                            "D. Man-in-the-middle attack"
-                        ],
-                        "answerIndex": 0
-                    },
-                    {
-                        "id": 2,
-                        "question": "Which type of malware is designed to replicate itself and spread to other computers?",
-                        "options": [
-                            "A. Virus",
-                            "B. Trojan",
-                            "C. Spyware",
-                            "D. Ransomware"
-                        ],
-                        "answerIndex": 0
-                    },
-                    {
-                        "id": 3,
-                        "question": "What vulnerability does a buffer overflow exploit?",
-                        "options": [
-                            "A. Weak encryption",
-                            "B. Insufficient input validation",
-                            "C. Poor network configuration",
-                            "D. Outdated software"
-                        ],
-                        "answerIndex": 1
-                    }
-                ]
             }
         ]
     }
