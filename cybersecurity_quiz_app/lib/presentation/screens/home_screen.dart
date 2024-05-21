@@ -34,6 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -59,11 +60,14 @@ class _HomeScreenState extends State<HomeScreen> {
           // Important: Remove any padding from the ListView.
           padding: EdgeInsets.zero,
           children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
+            DrawerHeader(
+              decoration: const BoxDecoration(
+                color: Colors.cyan,
               ),
-              child: Text('Drawer Header'),
+              child: Text(
+                'MENU',
+                style: textTheme.titleLarge,
+              ),
             ),
             ListTile(
               title: const Text('Profile'),
