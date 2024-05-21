@@ -1,33 +1,29 @@
 import 'package:cybersecurity_quiz_app/logic/models/quiz_model.dart';
-import 'package:meta/meta.dart';
 import 'package:equatable/equatable.dart';
 
-@immutable
-sealed class QuizState extends Equatable {
+enum QuizStatus { initial, success, failure }
+
+final class QuizState extends Equatable {
+  const QuizState(
+      {this.status = QuizStatus.initial,
+      this.quizzes = const <Quiz>[],
+});
+
+  final QuizStatus status;
   final List<Quiz> quizzes;
-  final bool hasReachedMax;
-  const QuizState({this.quizzes = const <Quiz>[], this.hasReachedMax = false});
+
+  QuizState copyWith({
+    QuizStatus? status,
+    List<Quiz>? quizzes,
+
+  }) {
+    return QuizState(
+      status: status ?? this.status,
+      quizzes: quizzes ?? this.quizzes,
+
+    );
+  }
 
   @override
-  List<Object> get props => [quizzes, hasReachedMax];
-}
-
-final class QuizInitial extends QuizState {}
-
-final class QuizLoading extends QuizState {}
-
-final class QuizError extends QuizState {
-  final String errorMessage;
-  const QuizError(this.errorMessage);
-}
-
-final class QuizLoaded extends QuizState {
-  const QuizLoaded(
-      {super.quizzes = const <Quiz>[], super.hasReachedMax = false});
-
-  QuizLoaded copyWith({List<Quiz>? quizzes, bool? hasReachedMax}) {
-    return QuizLoaded(
-        quizzes: quizzes ?? this.quizzes,
-        hasReachedMax: hasReachedMax ?? this.hasReachedMax);
-  }
+  List<Object> get props => [status, quizzes];
 }

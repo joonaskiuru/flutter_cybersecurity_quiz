@@ -10,7 +10,7 @@ class QuizSelection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocProvider(
-        create: (context) => QuizBloc()..add(LoadQuizzes()),
+        create: (_) => QuizBloc()..add(LoadQuizzes()),
         child: QuizList(),
       ),
     );

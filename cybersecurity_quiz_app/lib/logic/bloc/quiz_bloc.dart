@@ -1,24 +1,52 @@
+import 'dart:convert';
+import 'package:bloc_concurrency/bloc_concurrency.dart';
+
 import 'package:bloc/bloc.dart';
 import 'package:cybersecurity_quiz_app/logic/models/quiz_model.dart';
+import 'package:stream_transform/stream_transform.dart';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'quiz_event.dart';
 import 'quiz_state.dart';
 
-class QuizBloc extends Bloc<QuizEvent, QuizState> {
-  QuizBloc() : super(QuizInitial()) {
-    on<LoadQuizzes>(_onLoadQuizzes);
-  }
+const throttleDuration = Duration(milliseconds: 100);
+
+EventTransformer<E> throttleDroppable<E>(Duration duration) {
+  return (events, mapper) {
+    return droppable<E>().call(events.throttle(duration), mapper);
+  };
 }
 
-Future<void> _onLoadQuizzes(LoadQuizzes event, Emitter<QuizState> emit) async {
-  emit(QuizLoading());
-  try {
-    var quizJson =
-        await rootBundle.loadString("assets/database/quiz_data.json");
-    List<Quiz> quizzes = Quiz.fromJsonToList(quizJson);
-    print("quizzes: ${quizzes}");
-    emit(QuizLoaded(quizzes: quizzes, hasReachedMax: false));
-  } catch (e) {
-    emit(const QuizError("Error loading quiz data."));
+class QuizBloc extends Bloc<QuizEvent, QuizState> {
+  QuizBloc() : super(const QuizState()) {
+    on<LoadQuizzes>(_onLoadQuizzes);
+  }
+
+  Future<void> _onLoadQuizzes(
+      LoadQuizzes event, Emitter<QuizState> emit) async {
+
+    try {
+      // Fetch data from json file.
+      var quizJson =
+          await rootBundle.loadString("assets/database/quiz_data.json");
+
+      // Refactor json data to list of quizzes.
+      List<Quiz> quizzes = fromJsonToList(quizJson);
+      emit(state.copyWith(
+              status: QuizStatus.success,
+              quizzes: List.of(state.quizzes)..addAll(quizzes),
+
+            ));
+    } catch (e) {
+      emit(state.copyWith(status: QuizStatus.failure));
+    }
+  }
+
+  // Create a list of quizzes from json data
+  List<Quiz> fromJsonToList(String jsonData) {
+    var jsonList = jsonDecode(jsonData);
+    var quizzes = jsonList['quiz']['categories'] as List;
+    return quizzes.map((_) => Quiz.formatQuiz(_)).toList();
   }
 }

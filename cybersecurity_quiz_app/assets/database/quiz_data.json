@@ -114,6 +114,44 @@
                         "answerIndex": 1
                     }
                 ]
+            },
+            {
+                "category": "Active Directory",
+                "questions": [
+                    {
+                        "id": 1,
+                        "question": "What is Active Directory primarily used for?",
+                        "options": [
+                            "A. Database management",
+                            "B. Network routing",
+                            "C. User and resource management",
+                            "D. Website hosting"
+                        ],
+                        "answerIndex": 2
+                    },
+                    {
+                        "id": 2,
+                        "question": "Which protocol does Active Directory use for directory services?",
+                        "options": [
+                            "A. FTP",
+                            "B. LDAP",
+                            "C. SMTP",
+                            "D. HTTP"
+                        ],
+                        "answerIndex": 1
+                    },
+                    {
+                        "id": 3,
+                        "question": "What is the name of the Active Directory database file?",
+                        "options": [
+                            "A. ad.mdb",
+                            "B. ntuser.dat",
+                            "C. ntds.dit",
+                            "D. ad.ds"
+                        ],
+                        "answerIndex": 2
+                    }
+                ]
             }
         ]
     }
