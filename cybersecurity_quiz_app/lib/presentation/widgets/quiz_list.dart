@@ -1,6 +1,7 @@
 import 'package:cybersecurity_quiz_app/logic/bloc/quiz_bloc.dart';
 import 'package:cybersecurity_quiz_app/logic/bloc/quiz_event.dart';
 import 'package:cybersecurity_quiz_app/logic/bloc/quiz_state.dart';
+import 'package:cybersecurity_quiz_app/presentation/widgets/quiz_list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -35,12 +36,7 @@ class _QuizList extends State<QuizList> {
             itemBuilder: (BuildContext context, int index) {
               return index >= state.quizzes.length
                   ? const Center(child: CircularProgressIndicator())
-                  : ListTile(
-                      title: Container(
-                          height: 400,
-                          color: Colors.amber,
-                          child: Text(state.quizzes[index].category)),
-                    );
+                  : QuizListItem(quiz: state.quizzes[index]);
             },
             itemCount: state.quizzes.length,
             controller: _scrollController,

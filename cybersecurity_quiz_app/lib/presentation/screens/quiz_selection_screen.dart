@@ -11,7 +11,7 @@ class QuizSelection extends StatelessWidget {
     return Scaffold(
       body: BlocProvider(
         create: (_) => QuizBloc()..add(LoadQuizzes()),
-        child: QuizList(),
+        child: const QuizList(),
       ),
     );
   }
