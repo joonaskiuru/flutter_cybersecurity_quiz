@@ -11,12 +11,16 @@ class QuizListItem extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+    ThemeData theme = Theme.of(context);
+    debugPrint(theme.toString());
     return Material(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Card(
           elevation: 5,
-          color: Colors.cyan,
+          color: theme.brightness == Brightness.light
+              ? Colors.cyan
+              : Colors.cyan.shade700,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
@@ -26,7 +30,9 @@ class QuizListItem extends StatelessWidget {
                 SizedBox(
                   height: height * 0.1,
                   child: Card(
-                    color: Colors.yellow,
+                    color: theme.brightness == Brightness.light
+                        ? Colors.yellow
+                        : Colors.grey.shade700,
                     child: ListTile(
                       title: Text(quiz.category, style: textTheme.titleLarge),
                       subtitle: Text(

@@ -5,7 +5,7 @@ import 'package:cybersecurity_quiz_app/presentation/widgets/quiz_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class QuizSelection extends StatelessWidget {
+class QuizSelectionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

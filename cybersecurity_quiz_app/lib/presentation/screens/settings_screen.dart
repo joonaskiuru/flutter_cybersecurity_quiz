@@ -1,4 +1,7 @@
+import 'package:cybersecurity_quiz_app/logic/bloc/theme_bloc.dart';
+import 'package:cybersecurity_quiz_app/logic/bloc/theme_event.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -8,17 +11,16 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreen extends State<SettingsScreen> {
-  ThemeMode _themeMode = ThemeMode.system;
-  void changeTheme(ThemeMode themeMode) {
-    setState(() {
-      _themeMode = themeMode;
-    });
+  void changeTheme() {
+    context.read<ThemeBloc>().add(ChangeTheme());
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ElevatedButton(onPressed: ,)
-    );
+        body: ElevatedButton(
+      onPressed: changeTheme,
+      child: const Text("Toggle Theme"),
+    ));
   }
 }

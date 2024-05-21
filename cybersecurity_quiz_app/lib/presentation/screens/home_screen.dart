@@ -1,4 +1,5 @@
 import 'package:cybersecurity_quiz_app/presentation/screens/quiz_selection_screen.dart';
+import 'package:cybersecurity_quiz_app/presentation/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -19,11 +20,8 @@ class _HomeScreenState extends State<HomeScreen> {
       'Index 0: Home',
       style: optionStyle,
     ),
-    QuizSelection(),
-    const Text(
-      'Index 2: Settings',
-      style: optionStyle,
-    ),
+    QuizSelectionScreen(),
+    const SettingsScreen()
   ];
 
   void _onItemTapped(int index) {
