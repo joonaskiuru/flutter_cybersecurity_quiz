@@ -1,4 +1,5 @@
 import 'package:cybersecurity_quiz_app/logic/models/quiz_model.dart';
+import 'package:cybersecurity_quiz_app/presentation/screens/quiz_details_screen.dart';
 import 'package:flutter/material.dart';
 
 class QuizListItem extends StatelessWidget {
@@ -57,7 +58,7 @@ class QuizListItem extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      const Text("Quiz Details")),
+                                      QuizDetailsScreen(quizData: quiz)),
                             );
                           },
                           label: Text(
