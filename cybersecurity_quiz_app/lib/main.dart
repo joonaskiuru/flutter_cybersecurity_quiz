@@ -1,4 +1,5 @@
 import 'package:cybersecurity_quiz_app/logic/bloc/theme_bloc.dart';
+import 'package:cybersecurity_quiz_app/logic/bloc/theme_event.dart';
 import 'package:cybersecurity_quiz_app/logic/bloc/theme_state.dart';
 import 'package:cybersecurity_quiz_app/presentation/screens/home_screen.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 void main() {
   runApp(
     BlocProvider(
-      create: (_) => ThemeBloc(),
+      create: (_) => ThemeBloc()..add(InitTheme()),
       child: BlocBuilder<ThemeBloc, ThemeState>(
         builder: (context, state) {
           return MaterialApp(

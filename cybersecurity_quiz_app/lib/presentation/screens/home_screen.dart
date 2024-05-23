@@ -32,7 +32,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+    final theme = Theme.of(context);
+    final textTheme = theme.textTheme;
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -59,8 +60,10 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: EdgeInsets.zero,
           children: [
             DrawerHeader(
-              decoration: const BoxDecoration(
-                color: Colors.cyan,
+              decoration: BoxDecoration(
+                color: theme.brightness == Brightness.light
+                    ? Colors.cyan
+                    : Colors.cyan.shade700,
               ),
               child: Text(
                 'MENU',
