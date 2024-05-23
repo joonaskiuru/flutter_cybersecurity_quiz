@@ -17,6 +17,8 @@ class _QuizForm extends State<QuizForm> {
   int _questionIndex = 0;
   int points = 0;
   List<Question> questions = List.empty();
+  List<String> options = List.empty();
+  String answer = "";
 
   @override
   void initState() {
@@ -42,8 +44,17 @@ class _QuizForm extends State<QuizForm> {
               child: Column(
                   children: questions
                       .map(
-                        (question) => ListTile(
-                          title: Text(question.question),
+                        (question) => Column(
+                          children: [
+                            Text(question.question),
+                            Column(
+                                children: question.options
+                                    .map(
+                                      (e) => Text(e),
+                                    )
+                                    .toList()),
+                            Text(question.answerIndex.toString()),
+                          ],
                         ),
                       )
                       .toList()),
