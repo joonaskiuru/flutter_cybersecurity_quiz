@@ -1,3 +1,4 @@
+import 'package:cybersecurity_quiz_app/presentation/screens/info_screen.dart';
 import 'package:cybersecurity_quiz_app/presentation/screens/quiz_selection_screen.dart';
 import 'package:cybersecurity_quiz_app/presentation/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
@@ -18,10 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   static final List<Widget> _widgetOptions = <Widget>[
     QuizSelectionScreen(),
     const SettingsScreen(),
-    const Text(
-      'Info',
-      style: optionStyle,
-    ),
+    const InfoScreen()
   ];
 
   void _onItemTapped(int index) {
