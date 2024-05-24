@@ -14,6 +14,6 @@ class QuizDetailsScreen extends StatelessWidget {
     return Scaffold(
         body: BlocProvider(
             create: (_) => QuestionBloc(),
-            child: QuizForm(quizData: quizData)));
+            child: QuizCard(quizData: quizData)));
   }
 }

@@ -6,16 +6,16 @@ import 'package:cybersecurity_quiz_app/logic/models/quiz_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class QuizForm extends StatefulWidget {
+class QuizCard extends StatefulWidget {
   final Quiz quizData;
 
-  const QuizForm({super.key, required this.quizData});
+  const QuizCard({super.key, required this.quizData});
 
   @override
-  State<StatefulWidget> createState() => _QuizForm();
+  State<StatefulWidget> createState() => _QuizCard();
 }
 
-class _QuizForm extends State<QuizForm> {
+class _QuizCard extends State<QuizCard> {
   List<Question> questions = List.empty();
 
   @override
@@ -45,53 +45,57 @@ class _QuizForm extends State<QuizForm> {
         : BlocBuilder<QuestionBloc, QuestionState>(
             builder: (context, state) {
               if (state.currentQuestionIndex! < questions.length) {
-                debugPrint("questions length: ${questions.length}");
-                debugPrint("Current Index:${state.currentQuestionIndex}");
                 var questionIndex = state.currentQuestionIndex!;
                 return Center(
                   child: SizedBox(
                     height: height * 0.7,
                     child: Card(
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Card(
-                            color: themeCyan,
-                            child: Padding(
-                              padding: const EdgeInsets.all(15.0),
-                              child: Text(questions[questionIndex].question,
-                                  style: textTheme.titleLarge),
+                          SizedBox(
+                            width: width,
+                            child: Card(
+                              color: themeCyan,
+                              child: Padding(
+                                padding: const EdgeInsets.all(15.0),
+                                child: Text(questions[questionIndex].question,
+                                    style: textTheme.titleLarge),
+                              ),
                             ),
                           ),
-                          Column(children: [
-                            ...List.generate(
-                                questions[questionIndex].options.length,
-                                (optionIndex) {
-                              var answerIndex =
-                                  questions[questionIndex].answerIndex;
-                              return ElevatedButton(
-                                style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.resolveWith<Color?>(
-                                    (Set<MaterialState> states) {
-                                      if (states
-                                          .contains(MaterialState.pressed)) {
-                                        return Colors.grey.withOpacity(0.5);
-                                      }
-                                      return null; // Use the component's default.
-                                    },
-                                  ),
-                                ),
-                                onPressed: () => context
-                                    .read<QuestionBloc>()
-                                    .add(AnswerQuestion(
-                                        optionIndex, answerIndex)),
-                                child: Text(questions[questionIndex]
-                                    .options[optionIndex]),
-                              );
-                            }),
-                          ]),
+                          Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                ...List.generate(
+                                    questions[questionIndex].options.length,
+                                    (optionIndex) {
+                                  var answerIndex =
+                                      questions[questionIndex].answerIndex;
+                                  return ElevatedButton(
+                                    style: ButtonStyle(
+                                      backgroundColor: MaterialStateProperty
+                                          .resolveWith<Color?>(
+                                        (Set<MaterialState> states) {
+                                          if (states.contains(
+                                              MaterialState.pressed)) {
+                                            return Colors.grey.withOpacity(0.5);
+                                          }
+                                          return null; // Use the component's default.
+                                        },
+                                      ),
+                                    ),
+                                    onPressed: () => context
+                                        .read<QuestionBloc>()
+                                        .add(AnswerQuestion(
+                                            optionIndex, answerIndex)),
+                                    child: Text(questions[questionIndex]
+                                        .options[optionIndex]),
+                                  );
+                                }),
+                              ]),
                         ],
                       ),
                     ),
