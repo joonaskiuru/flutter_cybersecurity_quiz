@@ -28,6 +28,15 @@ class _QuizForm extends State<QuizForm> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final textTheme = theme.textTheme;
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+    final themeCyan = theme.brightness == Brightness.light
+        ? Colors.cyan
+        : Colors.cyan.shade700;
+
+    final themeYellow = theme.brightness == Brightness.light
+        ? Colors.yellow
+        : Colors.grey.shade700;
 
     return questions.isEmpty
         ? const Center(
@@ -40,41 +49,111 @@ class _QuizForm extends State<QuizForm> {
                 debugPrint("Current Index:${state.currentQuestionIndex}");
                 var questionIndex = state.currentQuestionIndex!;
                 return Center(
-                  child: Card(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Card(
-                          color: theme.brightness == Brightness.light
-                              ? Colors.cyan
-                              : Colors.cyan.shade700,
-                          child: Padding(
-                            padding: const EdgeInsets.all(15.0),
-                            child: Text(questions[questionIndex].question,
-                                style: textTheme.titleLarge),
+                  child: SizedBox(
+                    height: height * 0.7,
+                    child: Card(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Card(
+                            color: themeCyan,
+                            child: Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: Text(questions[questionIndex].question,
+                                  style: textTheme.titleLarge),
+                            ),
                           ),
-                        ),
-                        Column(children: [
-                          ...List.generate(
-                              questions[questionIndex].options.length,
-                              (optionIndex) {
-                            var answerIndex =
-                                questions[questionIndex].answerIndex;
-                            return ElevatedButton(
-                              onPressed: () => context.read<QuestionBloc>().add(
-                                  AnswerQuestion(optionIndex, answerIndex)),
-                              child: Text(questions[questionIndex]
-                                  .options[optionIndex]),
-                            );
-                          }),
-                        ]),
-                      ],
+                          Column(children: [
+                            ...List.generate(
+                                questions[questionIndex].options.length,
+                                (optionIndex) {
+                              var answerIndex =
+                                  questions[questionIndex].answerIndex;
+                              return ElevatedButton(
+                                style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.resolveWith<Color?>(
+                                    (Set<MaterialState> states) {
+                                      if (states
+                                          .contains(MaterialState.pressed)) {
+                                        return Colors.grey.withOpacity(0.5);
+                                      }
+                                      return null; // Use the component's default.
+                                    },
+                                  ),
+                                ),
+                                onPressed: () => context
+                                    .read<QuestionBloc>()
+                                    .add(AnswerQuestion(
+                                        optionIndex, answerIndex)),
+                                child: Text(questions[questionIndex]
+                                    .options[optionIndex]),
+                              );
+                            }),
+                          ]),
+                        ],
+                      ),
                     ),
                   ),
                 );
               } else {
-                return Text("Quiz Completed!");
+                return Center(
+                    child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Card(
+                      child: SizedBox(
+                    height: height * 0.5,
+                    width: width * 0.7,
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Card(
+                            color: themeCyan,
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Column(
+                                children: [
+                                  Text(
+                                    widget.quizData.category,
+                                    style: textTheme.headlineMedium,
+                                  ),
+                                  Text(
+                                    "Quiz Completed!",
+                                    style: textTheme.headlineMedium,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Column(
+                            children: [
+                              Text(
+                                "Points:",
+                                style: textTheme.headlineSmall,
+                              ),
+                              Text(
+                                  "${state.points.toString()} / ${questions.length}",
+                                  style: textTheme.headlineSmall),
+                            ],
+                          ),
+                          ElevatedButton.icon(
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: themeYellow),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              icon: const Icon(Icons.arrow_back),
+                              label: Text('Back to quiz selection',
+                                  style: textTheme.bodyLarge)),
+                        ],
+                      ),
+                    ),
+                  )),
+                ));
               }
             },
           );
