@@ -16,12 +16,12 @@ class _HomeScreenState extends State<HomeScreen> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static final List<Widget> _widgetOptions = <Widget>[
+    QuizSelectionScreen(),
+    const SettingsScreen(),
     const Text(
-      'Index 0: Home',
+      'Info',
       style: optionStyle,
     ),
-    QuizSelectionScreen(),
-    const SettingsScreen()
   ];
 
   void _onItemTapped(int index) {
@@ -71,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             ListTile(
-              title: const Text('Profile'),
+              title: const Text('Quizzes'),
               selected: _selectedIndex == 0,
               onTap: () {
                 // Update the state of the app
@@ -81,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
             ListTile(
-              title: const Text('Quizzes'),
+              title: const Text('Settings'),
               selected: _selectedIndex == 1,
               onTap: () {
                 // Update the state of the app
@@ -91,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
             ListTile(
-              title: const Text('Settings'),
+              title: const Text('Info'),
               selected: _selectedIndex == 2,
               onTap: () {
                 // Update the state of the app
