@@ -5,7 +5,6 @@ import 'package:bloc/bloc.dart';
 import 'package:cybersecurity_quiz_app/logic/models/quiz_model.dart';
 import 'package:stream_transform/stream_transform.dart';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'quiz_event.dart';
 import 'quiz_state.dart';
@@ -25,7 +24,6 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
 
   Future<void> _onLoadQuizzes(
       LoadQuizzes event, Emitter<QuizState> emit) async {
-
     try {
       // Fetch data from json file.
       var quizJson =
@@ -34,10 +32,9 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
       // Refactor json data to list of quizzes.
       List<Quiz> quizzes = fromJsonToList(quizJson);
       emit(state.copyWith(
-              status: QuizStatus.success,
-              quizzes: List.of(state.quizzes)..addAll(quizzes),
-
-            ));
+        status: QuizStatus.success,
+        quizzes: List.of(state.quizzes)..addAll(quizzes),
+      ));
     } catch (e) {
       emit(state.copyWith(status: QuizStatus.failure));
     }
