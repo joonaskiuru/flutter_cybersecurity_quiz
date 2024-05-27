@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class QuizSelectionScreen extends StatelessWidget {
+  const QuizSelectionScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
