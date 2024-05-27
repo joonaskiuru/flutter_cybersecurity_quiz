@@ -9,7 +9,7 @@ class InfoWidget extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     return Center(
       child: Padding(
-        padding: EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(10.0),
         child: SizedBox(
           width: width * 0.9,
           height: height * 0.9,

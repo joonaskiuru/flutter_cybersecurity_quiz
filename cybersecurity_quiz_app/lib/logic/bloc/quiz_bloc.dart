@@ -3,6 +3,7 @@ import 'package:bloc_concurrency/bloc_concurrency.dart';
 
 import 'package:bloc/bloc.dart';
 import 'package:cybersecurity_quiz_app/logic/models/quiz_model.dart';
+import 'package:flutter/material.dart';
 import 'package:stream_transform/stream_transform.dart';
 
 import 'package:flutter/services.dart';
@@ -29,11 +30,25 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
       var quizJson =
           await rootBundle.loadString("assets/database/quiz_data.json");
 
+      if (event.filter.isNotEmpty) {
+        emit(state.copyWith(
+          status: QuizStatus.success,
+          quizzes: [],
+        ));
+      }
+
       // Refactor json data to list of quizzes.
       List<Quiz> quizzes = fromJsonToList(quizJson);
+      List<Quiz> filteredQuizzes = quizzes
+          .where(
+            (element) => element.category
+                .toLowerCase()
+                .contains(event.filter.toLowerCase()),
+          )
+          .toList();
       emit(state.copyWith(
         status: QuizStatus.success,
-        quizzes: List.of(state.quizzes)..addAll(quizzes),
+        quizzes: List.of(state.quizzes)..addAll(filteredQuizzes),
       ));
     } catch (e) {
       emit(state.copyWith(status: QuizStatus.failure));

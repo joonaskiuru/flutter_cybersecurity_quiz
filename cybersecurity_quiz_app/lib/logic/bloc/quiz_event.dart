@@ -10,4 +10,8 @@ sealed class QuizEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class LoadQuizzes extends QuizEvent {}
+class LoadQuizzes extends QuizEvent {
+  final String filter;
+
+  const LoadQuizzes({required this.filter});
+}

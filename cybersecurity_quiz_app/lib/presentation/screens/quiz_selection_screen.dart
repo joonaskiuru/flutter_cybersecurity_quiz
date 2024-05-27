@@ -11,7 +11,7 @@ class QuizSelectionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocProvider(
-        create: (_) => QuizBloc()..add(LoadQuizzes()),
+        create: (_) => QuizBloc()..add(const LoadQuizzes(filter: "")),
         child: const QuizList(),
       ),
     );
