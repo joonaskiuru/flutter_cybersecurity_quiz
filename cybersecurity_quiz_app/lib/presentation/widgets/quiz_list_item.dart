@@ -15,6 +15,7 @@ class QuizListItem extends StatelessWidget {
     ThemeData theme = Theme.of(context);
     debugPrint(theme.toString());
     return Material(
+      color: Colors.white.withOpacity(0),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Card(
