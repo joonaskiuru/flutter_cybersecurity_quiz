@@ -3,7 +3,6 @@ import 'package:bloc_concurrency/bloc_concurrency.dart';
 
 import 'package:bloc/bloc.dart';
 import 'package:cybersecurity_quiz_app/logic/models/quiz_model.dart';
-import 'package:flutter/material.dart';
 import 'package:stream_transform/stream_transform.dart';
 
 import 'package:flutter/services.dart';
