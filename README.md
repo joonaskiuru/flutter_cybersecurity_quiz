@@ -19,6 +19,7 @@ Each question is presented with four answer options. Each question has only one 
 ![image](https://github.com/joonaskiuru/flutter_cybersecurity_quiz/assets/75437078/d68ebdbf-6da3-40a0-bb7b-c355787e6f21)
 
 After completing the quiz, points are shown to the user.
+
 ![image](https://github.com/joonaskiuru/flutter_cybersecurity_quiz/assets/75437078/f1db9bdc-d2e6-430b-8982-d8c38131e6a3)
 
 
